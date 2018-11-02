@@ -35,8 +35,8 @@ export class SigninComponent implements OnInit {
       
       this.userService.loginUser(this.signinForm.value).subscribe((response : any) => {
         localStorage.setItem("token",response.token);
-        this.userService.setUsername(response.username);
-        console.log("Token: "+response.user.token);
+        this.userService.setUsername(response.ownerName);
+        console.log("Token: "+response.token);
         this.router.navigate(['/'])
       })
     }
