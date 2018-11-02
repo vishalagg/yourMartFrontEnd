@@ -5,17 +5,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
-
+import { BsDropdownModule  } from 'ngx-bootstrap';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
+import { AddProductComponent } from './add-product/add-product.component';
+import { AddImageComponent } from './add-image/add-image.component';
 
 const routes : Routes = [
   {path : '', component: HomeComponent},
   {path : 'signin',component:SigninComponent},
-  {path : 'signup',component:SignupComponent}
+  {path : 'product',component:AddProductComponent},
+  {path : 'signup',component:SignupComponent},
+  {path : 'product/imgae',component:AddImageComponent}
 ]
 
 
@@ -25,7 +29,9 @@ const routes : Routes = [
     HeaderComponent,
     HomeComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    AddProductComponent,
+    AddImageComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +39,7 @@ const routes : Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BsDropdownModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
   providers: [],

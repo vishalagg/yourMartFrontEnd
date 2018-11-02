@@ -9,6 +9,7 @@ import { ProductService } from '../product.service';
 export class HomeComponent implements OnInit {
 
   products : any
+  dropdownHeading : string = 'name'
   constructor(private productService : ProductService) {
    }
 
@@ -18,8 +19,17 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  getProducts() {
-
+  searchProducts(searchQuery) {
+    console.log(searchQuery);
+    this.productService.getProducts(this.dropdownHeading,searchQuery).subscribe( products => {
+      this.products = products
+    })
+    
   }
+
+  setSearchKey(key) {
+    this.dropdownHeading = key
+  }
+  
 
 }

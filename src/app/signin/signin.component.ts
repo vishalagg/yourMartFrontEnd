@@ -28,8 +28,6 @@ export class SigninComponent implements OnInit {
   }
 
   loginUser() {
-    console.log("yahahah");
-    
     if(this.signinForm.valid) {
       console.log(this.signinForm.value);
       
@@ -38,6 +36,9 @@ export class SigninComponent implements OnInit {
         this.userService.setUsername(response.ownerName);
         console.log("Token: "+response.token);
         this.router.navigate(['/'])
+      },(error) => {
+        console.log(error);
+        
       })
     }
   }

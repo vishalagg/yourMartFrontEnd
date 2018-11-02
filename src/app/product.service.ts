@@ -9,13 +9,35 @@ export class ProductService {
   url: string = "http://localhost:8080"
   constructor(private http: HttpClient) { }
 
-  getProducts() {
+  getProducts(searchKey:String=null,searchQuery:String=null) {
+    let url : string = this.url + "/product"
+    if(searchKey && searchQuery) {
+      url += `?searchKey=${searchKey}&searchQuery=${searchQuery}`
+    }
     const httpOptions = {
       headers: new HttpHeaders({
         'authentication' : localStorage.getItem('token'),
         'Content-Type':  'application/json'
       })
     };
-    return this.http.get(this.url+"/product",httpOptions)
+    return this.http.get(url,httpOptions)
+  }
+
+  addProduct(product : any,sellerId : number) {
+    let url : string = this.url + "/product"
+    let category = product.category
+    product.seller = {
+      id : sellerId
+    }
+    product.category = {
+      id : category
+    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authentication' : localStorage.getItem('token'),
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.post(url,product,httpOptions)
   }
 }
