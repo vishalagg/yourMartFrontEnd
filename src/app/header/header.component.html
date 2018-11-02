@@ -1,0 +1,21 @@
+<nav class="navbar navbar-light bg-light justify-content-between head">
+
+  <a class="navbar-brand doBlack">Conduit</a>
+  <ul class="nav">
+      <li class="nav-item">
+          <a routerLink='/' class="nav-link doBlack">Home</a>
+      </li>
+      <li class="nav-item">
+          <a routerLink='/signin' class="nav-link doBlack">Signin</a>
+      </li>
+      <li class="nav-item">
+          <a routerLink='/signup' class="nav-link doBlack">Signup</a>
+      </li>
+      <li class="nav-item">
+          <p (click)='logout()' class="nav-link doBlack">Logout</p>
+      </li>
+      <!-- <li class="nav-item">
+          <a [routerLink]="['/profile',username]" class="nav-link doBlack" *ngIf="username">{{ username }}</a>
+      </li> -->
+  </ul>
+</nav>
