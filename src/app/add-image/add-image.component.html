@@ -1,3 +1,7 @@
-<p>
-  add-image works!
-</p>
+<form [formGroup]="imageForm" (ngSubmit)="saveImage()" class="container">
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Example file input</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" formControlName="image">
+  </div>
+  <button type="submit" class="btn">submit</button>
+</form>

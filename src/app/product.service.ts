@@ -40,4 +40,22 @@ export class ProductService {
     };
     return this.http.post(url,product,httpOptions)
   }
+
+  addImage(image:any,productId:number) {
+    let url : string = this.url + "/product/image"
+
+    // let imageObject = {
+    //   image : image,
+    //   product : {
+    //     id : productId
+    //   }
+    // }
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'authentication' : localStorage.getItem('token'),
+    //     'Content-Type':  'application/json'
+    //   })
+    // };
+    // return this.http.post(url,imageObject,httpOptions)
+  }
 }

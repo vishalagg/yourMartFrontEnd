@@ -19,7 +19,7 @@ const routes : Routes = [
   {path : 'signin',component:SigninComponent},
   {path : 'product',component:AddProductComponent},
   {path : 'signup',component:SignupComponent},
-  {path : 'product/imgae',component:AddImageComponent}
+  {path : 'product/image',component:AddImageComponent}
 ]
 
 
