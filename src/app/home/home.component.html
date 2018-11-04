@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="isUserLoggedIn">
   <div class="row">
     <div class="col-md-6">
       <div class="input-group mb-3">
@@ -56,5 +56,11 @@
     <div class="col-md-4">
       <p>filters</p>
     </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!isUserLoggedIn">
+  <div class="text-center message">
+    Please <a routerLink="/signin">signin</a> or <a routerLink="/signup">signup</a> to access PMP.
   </div>
 </div>

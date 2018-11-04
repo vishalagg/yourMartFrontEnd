@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +11,21 @@ export class HomeComponent implements OnInit {
 
   products : any
   dropdownHeading : string = 'name'
-  constructor(private productService : ProductService) {
+  isUserLoggedIn : boolean = false
+  constructor(private productService : ProductService,
+              private userService : UserService) {
    }
 
   ngOnInit() {
+    if(localStorage.getItem('token')){
+      this.isUserLoggedIn = true
+    }
     this.productService.getProducts().subscribe( products => {
       this.products = products
     })
   }
 
   searchProducts(searchQuery) {
-    console.log(searchQuery);
     this.productService.getProducts(this.dropdownHeading,searchQuery).subscribe( products => {
       this.products = products
     })

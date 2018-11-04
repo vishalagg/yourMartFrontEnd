@@ -12,10 +12,9 @@ import { HttpHeaders } from '../../../node_modules/@angular/common/http';
 })
 export class SigninComponent implements OnInit {
 
-  password: string
-  email: string
   signinForm: FormGroup
   currentUsername = new Subject<string>()
+  loginError : string
   constructor(private formBuilder: FormBuilder,  private userService: UserService,
       private router: Router) {
     this.signinForm = this.formBuilder.group({
@@ -34,11 +33,9 @@ export class SigninComponent implements OnInit {
       this.userService.loginUser(this.signinForm.value).subscribe((response : any) => {
         localStorage.setItem("token",response.token);
         this.userService.setUsername(response.ownerName);
-        console.log("Token: "+response.token);
         this.router.navigate(['/'])
       },(error) => {
-        console.log(error);
-        
+        this.loginError = error
       })
     }
   }

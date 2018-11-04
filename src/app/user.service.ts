@@ -18,11 +18,32 @@ export class UserService {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
-    };
+    }
     return this.http.post(this.url+"/seller/login",user)
   }
 
   setUsername(username: string) {
     this.currentUsername.next(username)
   }
+
+  registerUser(user:any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    }
+    const newUser = {
+      passowrd : user.password,
+      seller : {
+        companyName : user.companyName,
+        ownerName : user.name,
+        email : user.email,
+        phone:user.phone,
+        gstNumber : user.gst,
+        address : user.address    
+      }  
+    }
+    return this.http.post(this.url+"/seller/register",newUser)
+  }
+  
 }
