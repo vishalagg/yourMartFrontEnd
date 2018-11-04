@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" routerLink="/">Home
+                <a class="nav-link" routerLink="/" href="#">Home
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
@@ -20,22 +20,22 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form> -->
-        <button class="nav-link" class="logbtn" *ngIf="username" routerLink='/home'>
+        <button class="nav-link" class="logbtn" *ngIf="token" routerLink='/home'>
             <h5><span class="badge badge-secondary">{{ username }}</span></h5>
         </button>
-        <button class="nav-link" class="logbtn" *ngIf="username" routerLink='/product'>
+        <button class="nav-link" class="logbtn" *ngIf="token" routerLink='/product'>
             Add Product
             <i class="far fa-plus-square"></i>
         </button>
-        <button class="nav-link" class="logbtn" *ngIf="!username" routerLink='/signin'>
+        <button class="nav-link" class="logbtn" *ngIf="!token" routerLink='/signin'>
             Signin
             <i class="fas fa-sign-in-alt"></i>
         </button>
-        <button type="submit" class="logbtn" *ngIf="username" (click)='logout()'>
+        <button type="submit" class="logbtn" *ngIf="token" (click)='logout()'>
             signout
             <i class="fas fa-sign-out-alt"></i>
         </button>
-        <button type="submit" class="logbtn" *ngIf="!username" routerLink='/signup'>
+        <button type="submit" class="logbtn" *ngIf="!token" routerLink='/signup'>
             Register
             <i class="fas fa-user-plus"></i>
         </button>

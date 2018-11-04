@@ -11,6 +11,7 @@ export class UserService {
 
   url: string = "http://localhost:8080"
   currentUsername = new Subject<string>()
+  currentToken = new Subject<string>()
   constructor(private http: HttpClient) { }
 
   loginUser(user: any) {
@@ -24,6 +25,10 @@ export class UserService {
 
   setUsername(username: string) {
     this.currentUsername.next(username)
+  }
+
+  setCurrentToken(token: string) {
+    this.currentToken.next(token)
   }
 
   registerUser(user:any) {

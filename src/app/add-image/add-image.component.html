@@ -1,7 +1,4 @@
-<form [formGroup]="imageForm" (ngSubmit)="saveImage()" class="container">
-  <div class="form-group">
-    <label for="exampleFormControlFile1">Example file input</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" formControlName="image">
-  </div>
-  <button type="submit" class="btn">submit</button>
-</form>
+<div class="container">
+  <input type="file" accept="image/*" (change)="onFileSeleceted($event)">
+  <button class="btn btn-outline-success" (click)="uploadImage()">UPLOAD</button>
+</div>

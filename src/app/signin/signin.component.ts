@@ -14,6 +14,7 @@ export class SigninComponent implements OnInit {
 
   signinForm: FormGroup
   currentUsername = new Subject<string>()
+  isToken = new Subject<string>()
   loginError : string
   constructor(private formBuilder: FormBuilder,  private userService: UserService,
       private router: Router) {
@@ -33,6 +34,7 @@ export class SigninComponent implements OnInit {
       this.userService.loginUser(this.signinForm.value).subscribe((response : any) => {
         localStorage.setItem("token",response.token);
         this.userService.setUsername(response.ownerName);
+        this.userService.setCurrentToken(response.token);
         this.router.navigate(['/'])
       },(error) => {
         this.loginError = error

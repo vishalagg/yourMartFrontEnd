@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '../../../node_modules/@angular/forms';
 import { ProductService } from '../product.service';
-import { Router } from '../../../node_modules/@angular/router';
+import { Router, ActivatedRoute } from '../../../node_modules/@angular/router';
+import { ImageService } from '../image.service';
 
 @Component({
   selector: 'app-add-image',
@@ -9,45 +10,27 @@ import { Router } from '../../../node_modules/@angular/router';
   styleUrls: ['./add-image.component.css']
 })
 export class AddImageComponent implements OnInit {
-  image : any
-  imageForm : FormGroup
-  selectedFile: File
-
-  constructor(private formBuilder: FormBuilder,private productService: ProductService,
-    private router: Router) { }
+  image: File
+  productId: number
+  constructor(private imageService: ImageService,private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.imageForm = this.formBuilder.group({
-      image: ['', Validators.compose([Validators.required])]
-    })
+    this.productId = +this.route.snapshot.paramMap.get('id')
   }
 
-  saveImage() {
-    console.log(this.imageForm.value);
-    if(this.imageForm.valid) {
-      console.log(this.imageForm.value);
-      let fd = new FormData();
-      fd.append('image',this.selectedFile)
-      console.log(fd.get("image"));
-      console.log(fd.getAll('image'));
-
-    //   for (let value of fd.values()) {
-    //     console.log(value);
-    //  }
-      
-      // this.productService.addImage(fd,12).subscribe((response : any) => {
-      //   // this.router.navigate(['/product/image'])
-      //   console.log(response);
-        
-      // },(error) => {
-      //   console.log(error);
-        
-      // })
-    }   
+  onFileSeleceted(event) {
+    this.image = event.target.files[0];
+    console.log(this.image)
   }
-  
-  onFileChange(event) {
-    let file = event.target.files[0]
-    this.selectedFile = <File>file
+
+  uploadImage() {
+    let form = new FormData()
+    form.append('image', this.image)
+    this.imageService.uploadImage(form, this.productId).subscribe(
+      (response) => {
+        console.log(response)
+      }
+    )
   }
 }
