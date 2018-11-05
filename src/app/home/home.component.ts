@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   products : any
   dropdownHeading : string = 'name'
   token : string 
+  categories : any
   constructor(private productService : ProductService,
               private userService : UserService) {
    }
@@ -21,7 +22,9 @@ export class HomeComponent implements OnInit {
     //   this.token = token
     // })`
     this.token = localStorage.getItem('token')
-
+    this.productService.getCategories().subscribe((categoies)=> {
+      this.categories = categoies
+    })
     this.productService.getProducts().subscribe( products => {
       this.products = products
     })

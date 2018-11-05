@@ -21,12 +21,13 @@ export class AddImageComponent implements OnInit {
 
   onFileSeleceted(event) {
     this.image = event.target.files[0];
-    console.log(this.image)
   }
 
   uploadImage() {
     let form = new FormData()
     form.append('image', this.image)
+    console.log(this.productId);
+    
     this.imageService.uploadImage(form, this.productId).subscribe(
       (response) => {
         console.log(response)
