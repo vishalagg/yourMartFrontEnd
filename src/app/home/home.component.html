@@ -1,4 +1,4 @@
-<div class="container" *ngIf="isUserLoggedIn">
+<div class="container" *ngIf="token">
   <div class="row">
     <div class="col-md-6">
       <div class="input-group mb-3">
@@ -47,7 +47,7 @@
             <td>{{ product.ymp }}</td>
             <td>{{ product.category.name }}</td>
             <td>
-              <a href="">View</a>
+              <a routerLink="/product/{{product.id}}">View</a>
             </td>
           </tr>
         </tbody>
@@ -59,7 +59,7 @@
   </div>
 </div>
 
-<div class="container" *ngIf="!isUserLoggedIn">
+<div class="container" *ngIf="!token">
   <div class="text-center message">
     Please <a routerLink="/signin">signin</a> or <a routerLink="/signup">signup</a> to access PMP.
   </div>

@@ -12,9 +12,10 @@ import { ProductService } from '../product.service';
 export class AddProductComponent implements OnInit {
   
   productForm: FormGroup
-
+  token : string
+  categories : any
   constructor(private formBuilder: FormBuilder, private productService: ProductService,
-    private router: Router) {
+    private router: Router,private userService: UserService) {
     this.productForm = this.formBuilder.group({
       code: ['', Validators.compose([Validators.required])],
       name: ['', Validators.compose([Validators.required])],
@@ -31,13 +32,18 @@ export class AddProductComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.token = localStorage.getItem('token')
+
+    this.productService.getCategories().subscribe((categoies)=> {
+      this.categories = categoies
+    })
   }
 
   saveProduct() {
     if(this.productForm.valid) {
       console.log(this.productForm.value);
-      
-      this.productService.addProduct(this.productForm.value,10).subscribe((response : any) => {
+    
+      this.productService.addProduct(this.productForm.value,localStorage.getItem('id')).subscribe((response : any) => {
         this.router.navigate(['/product/image'])
         
       },(error) => {

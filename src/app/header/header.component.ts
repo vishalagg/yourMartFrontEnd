@@ -16,13 +16,14 @@ export class HeaderComponent implements OnInit {
     
    }
 
-  ngOnInit() {
+   ngOnInit() {
+    this.token = localStorage.getItem('token')
     this.userService.currentUsername.subscribe(username => {
       this.username = username
     })
-    this.userService.currentToken.subscribe(token => {
-      this.token = token
-    })
+    // this.userService.currentToken.subscribe(token => {
+    //   this.token = token
+    // })
   }
 
   logout(){

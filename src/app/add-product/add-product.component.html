@@ -1,4 +1,4 @@
-<form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="container">
+<form *ngIf="token" [formGroup]="productForm" (ngSubmit)="saveProduct()" class="container">
   <div class="form-group">
     <label>code</label>
     <input class="form-control form-control-sm" type="text" formControlName="code">
@@ -21,7 +21,9 @@
   </div>
   <div class="form-group">
     <label>category</label>
-    <input class="form-control form-control-sm" type="text" formControlName="category">
+    <select class="form-control form-control-sm" *ngFor="let category of categories" formControlName="category">
+      <option value="{{ category.id }}">{{ category.name }}</option>
+    </select>
   </div>
   <div class="form-group">
     <label>MRP</label>
@@ -45,3 +47,9 @@
   </div>
   <button type="submit" class="btn btn-primary">Add</button>
 </form>
+
+<div class="container" *ngIf="!token">
+  <div class="text-center message">
+    Please <a routerLink="/signin">signin</a> or <a routerLink="/signup">signup</a> to access PMP.
+  </div>
+</div>

@@ -29,10 +29,10 @@ export class SigninComponent implements OnInit {
 
   loginUser() {
     if(this.signinForm.valid) {
-      console.log(this.signinForm.value);
       
       this.userService.loginUser(this.signinForm.value).subscribe((response : any) => {
         localStorage.setItem("token",response.token);
+        localStorage.setItem("id",response.id)
         this.userService.setUsername(response.ownerName);
         this.userService.setCurrentToken(response.token);
         this.router.navigate(['/'])

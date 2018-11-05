@@ -11,15 +11,17 @@ export class HomeComponent implements OnInit {
 
   products : any
   dropdownHeading : string = 'name'
-  isUserLoggedIn : boolean = false
+  token : string 
   constructor(private productService : ProductService,
               private userService : UserService) {
    }
 
   ngOnInit() {
-    if(localStorage.getItem('token')){
-      this.isUserLoggedIn = true
-    }
+    // this.userService.currentToken.subscribe((token) => {
+    //   this.token = token
+    // })`
+    this.token = localStorage.getItem('token')
+
     this.productService.getProducts().subscribe( products => {
       this.products = products
     })

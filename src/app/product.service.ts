@@ -23,7 +23,7 @@ export class ProductService {
     return this.http.get(url,httpOptions)
   }
 
-  addProduct(product : any,sellerId : number) {
+  addProduct(product : any,sellerId : string) {
     let url : string = this.url + "/product"
     let category = product.category
     product.seller = {
@@ -57,5 +57,15 @@ export class ProductService {
     //   })
     // };
     // return this.http.post(url,imageObject,httpOptions)
+  }
+
+  getCategories() {
+    let url = this.url + "/category"
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.get(url,httpOptions)
   }
 }

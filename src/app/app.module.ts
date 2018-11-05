@@ -13,13 +13,15 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AddImageComponent } from './add-image/add-image.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 const routes : Routes = [
   {path : '', component: HomeComponent},
   {path : 'signin',component:SigninComponent},
   {path : 'product',component:AddProductComponent},
   {path : 'signup',component:SignupComponent},
-  {path : 'product/image',component:AddImageComponent}
+  {path : 'product/image',component:AddImageComponent},
+  {path : 'product/:id',component:ProductDetailComponent}  
 ]
 
 
@@ -31,7 +33,8 @@ const routes : Routes = [
     SigninComponent,
     SignupComponent,
     AddProductComponent,
-    AddImageComponent
+    AddImageComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
